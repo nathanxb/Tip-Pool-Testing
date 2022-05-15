@@ -24,3 +24,23 @@ function appendTd(tr, value) {
 
     tr.append(newTd);
 }
+
+// append delete button and assign it deleteRow function for payment and server tables
+function appendDeleteBtn(tr, type) {
+    let newTd = document.createElement('td');
+    newTd.className = 'deleteBtn';
+    newTd.innerText = 'X';
+
+    newTd.addEventListener('click', deleteRow);
+
+    tr.append(newTd);
+}
+
+function deleteRow(e) {
+    let row = e.target.closest('tr');
+
+    delete allServers[row.id];
+
+    row.parentNode.removeChild(row);
+    updateServerTable();
+}
